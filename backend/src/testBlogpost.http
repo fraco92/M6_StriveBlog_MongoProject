@@ -1,0 +1,18 @@
+GET http://localhost:3030/blogpost
+
+####
+
+POST http://localhost:3030/blogpost
+content-type: application/json
+
+{
+  "blogpost": {
+      "category": "Science",
+      "title": "il mio blogpost",
+      "cover": "https://picsum.photos/200/300",
+      "author": {
+        "name": "Francesco" 
+      },
+      "content": "Questo è il mio primo blogpost"
+    }
+}

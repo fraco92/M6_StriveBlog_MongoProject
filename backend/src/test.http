@@ -1,0 +1,19 @@
+GET http://localhost:3030/authors?page=2
+
+####
+
+POST http://localhost:3030/authors
+content-type: application/json
+
+{
+  "author": {
+      "name": "utente y",
+      "surname": "cognome",
+      "email": "utente@lalala.it",
+      "birthdate": "23/09/1992" 
+    }
+}
+
+####
+
+GET http://localhost:3030/authors/66057e55a8ff42de6765c81e
