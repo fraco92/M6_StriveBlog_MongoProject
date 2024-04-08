@@ -44,6 +44,9 @@ dependencies:
   react-scripts:
     specifier: ^5.0.1
     version: 5.0.1(@babel/plugin-syntax-flow@7.24.1)(@babel/plugin-transform-react-jsx@7.23.4)(eslint@8.57.0)(react@18.2.0)(typescript@5.4.3)
+  react-use-status:
+    specifier: ^0.0.3
+    version: 0.0.3
   web-vitals:
     specifier: ^1.0.1
     version: 1.1.2
@@ -9116,6 +9119,13 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-use-status@0.0.3:
+    resolution: {integrity: sha512-6CDXJizKLUgIlv4h/ILufFoqcLYIL+Kj6CBeVRkvcCgvsvMCok/XDZWEQrF3/LdfGtOdshb16EiKurhntFEcUA==}
+    engines: {node: '>=14.17.0'}
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react@18.2.0:

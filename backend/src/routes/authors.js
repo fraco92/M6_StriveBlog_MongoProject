@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authorModel = require("../models/authorModel");
+const cloudinary = require("cloudinary").v2;
 const bcrypt = require("bcrypt");
 
 //GET
@@ -95,6 +96,28 @@ router.put("/updateAuthor/:id", async (request, response) => {
     });
   }
 });
+
+//PATCH IMG
+
+router.patch(
+  "/authors/:authorId/avatar",
+
+  async (request, response) => {
+    try {
+      await authorModel.findByIdAndUpdate(
+        request.params.id,
+        { avatar: request.file.path },
+        { new: true }
+      );
+      response.status(200).send("Success");
+    } catch (error) {
+      response.status(500).send({
+        statusCode: 500,
+        message: "Internal Server Error",
+      });
+    }
+  }
+);
 
 //DELETE
 
