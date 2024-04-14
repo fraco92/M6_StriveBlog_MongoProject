@@ -4,7 +4,6 @@ import Footer from "./components/footer/Footer";
 import Home from "./views/home/Home";
 import Blog from "./views/blog/Blog";
 import NewBlogPost from "./views/new/New";
-import ImgUpload from "./components/imgupload/ImgUpload";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -14,7 +13,6 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/uploadImg" element={<ImgUpload />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/new" element={<NewBlogPost />} />
       </Routes>

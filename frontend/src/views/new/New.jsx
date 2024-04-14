@@ -29,6 +29,15 @@ const NewBlogPost = (props) => {
             <option>Arts & Crafts</option>
           </Form.Control>
         </Form.Group>
+        <Form.Group controlId="blog-form" className="mt-3">
+          <Form.Label>Cover</Form.Label>
+          <Form.Control
+            type="file"
+            name="uploadImg"
+            size="lg"
+            placeholder="Cover"
+          />
+        </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">
           <Form.Label>Contenuto Blog</Form.Label>
 
