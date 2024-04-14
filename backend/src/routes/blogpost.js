@@ -3,7 +3,46 @@ const router = express.Router();
 const blogpostModel = require("../models/blogpostModel");
 const multer = require("multer");
 const { request } = require("http");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+require("dotenv").config();
 
+//IMG STORAGE
+
+//Cloudinary storage
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const cloudStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "blogpost_images",
+    // format: async (request, file) => `jpeg`,
+    public_id: (request, file) => file.name,
+  },
+});
+
+const cloudUpload = multer({ storage: cloudStorage });
+
+router.post(
+  "/blogpost/cloudUploadImg",
+  cloudUpload.single("uploadImg"),
+  async (request, response) => {
+    try {
+      response.status(200).json({ source: request.file.path });
+    } catch (error) {
+      response.status(500).send({
+        statusCode: 500,
+        message: "File On Cloud Upload Error",
+      });
+    }
+  }
+);
+
+//Internal storage
 const internalStorage = multer.diskStorage({
   destination: (request, file, cb) => {
     cb(null, "uploads");
@@ -88,6 +127,19 @@ router.post("/blogpost", async (request, response) => {
     });
   }
 });
+
+// router.post("/blogpost", async (request, response) => {
+//   try {
+//     const blogpost = await blogpostModel.create(request.body.blogpost);
+//     response.status(200).send(blogpost);
+//   } catch (error) {
+//     console.error(error);
+//     response.status(500).send({
+//       statusCode: 500,
+//       message: "Internal Server Error",
+//     });
+//   }
+// });
 
 //PUT
 
